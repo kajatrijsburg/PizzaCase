@@ -23,7 +23,10 @@
                    VerticalOptions="Center"/>
             <Stepper
                 x:Name="pizza_count"
-                Minimum="1"/>
+                Minimum="0"/>
+            <Button
+            Text="Add"
+            Margin="10"/>
         </StackLayout>
         <StackLayout
             Margin="10"
@@ -33,16 +36,23 @@
                    VerticalOptions="Center"/>
             <Picker
                 x:Name="topping_picker"
+                Margin="5"
                 Title="Select a topping to add">
             </Picker>
+            <Button
+                x:Name="add_topping"
+                Text="Add"
+                Margin="5"/>
         </StackLayout>
-        <Button
-            Text="Add to order"
-            Margin="10"/>
+        
 
         <Label
             Text="Current Order:"
             Margin="10"
             FontSize="Title"/>
+
+        <Button
+            Text="Order"
+            Margin="10"/>
     </VerticalStackLayout>
 </ContentPage>
