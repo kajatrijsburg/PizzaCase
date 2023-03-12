@@ -7,7 +7,8 @@
         <StackLayout 
             Orientation="Horizontal"
             Margin="10">
-            <Label 
+            <Label
+                VerticalOptions="Center"
                 Text="Name:"
                 Margin="5"/>
             <Entry
@@ -20,7 +21,8 @@
         <StackLayout 
             Orientation="Horizontal"
             Margin="10">
-            <Label 
+            <Label
+                VerticalOptions="Center"
                 Text="Address:"
                 Margin="5"/>
             <Entry
@@ -30,7 +32,8 @@
         <StackLayout 
             Orientation="Horizontal"
             Margin="10">
-            <Label 
+            <Label
+                VerticalOptions="Center"
                 Text="Postal code:"
                 Margin="5"/>
             <Entry
@@ -40,7 +43,8 @@
         <StackLayout 
             Orientation="Horizontal"
             Margin="10">
-            <Label 
+            <Label
+                VerticalOptions="Center"
                 Text="Phone number:"
                 Margin="5"/>
             <Entry
@@ -49,10 +53,8 @@
         </StackLayout>
         <Button
             Text="Save"
+            Margin="10"
             BackgroundColor="LightGreen"
-            TextColor="Black">
-            
-        </Button>
-        
+            TextColor="Black"/>
     </VerticalStackLayout>
 </ContentPage>
