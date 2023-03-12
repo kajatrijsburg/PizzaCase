@@ -37,7 +37,9 @@
             <Picker
                 x:Name="topping_picker"
                 Margin="5"
-                Title="Select a topping to add">
+                Title="Select a topping to add"
+                >
+                
             </Picker>
             <Button
                 x:Name="add_topping"
