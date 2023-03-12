@@ -4,9 +4,25 @@
              x:Class="PizzaCaseApp.Pages.SettingsPage"
              Title="SettingsPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to SettingsPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <StackLayout
+            Orientation="Horizontal"
+            Margin="10">
+            <Label
+                Text="ip:"
+                VerticalOptions="Center"
+                Margin="5"/>
+            <Entry
+                Placeholder="0.0.0.0"
+                Margin="5"/>
+        </StackLayout>
+        <StackLayout
+            Orientation="Horizontal"
+            Margin="10">
+            <Label
+                Text="Protocol: "
+                VerticalOptions="Center"
+                Margin="5"/>
+            <Picker/>
+        </StackLayout>
     </VerticalStackLayout>
 </ContentPage>
