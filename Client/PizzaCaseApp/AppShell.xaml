@@ -4,11 +4,17 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:PizzaCaseApp"
+    xmlns:pages="clr-namespace:PizzaCaseApp.Pages"
     Shell.FlyoutBehavior="Disabled">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+    <TabBar>
+        <ShellContent Title="Order"
+                      Icon="pizza_slice_solid.svg"
+                      ContentTemplate="{DataTemplate pages:OrderPage}" />
+
+        <ShellContent Title="Settings"
+                      Icon="gear_solid.svg"
+                      ContentTemplate="{DataTemplate pages:SettingsPage}" />
+    </TabBar>
 
 </Shell>
