@@ -4,9 +4,45 @@
              x:Class="PizzaCaseApp.Pages.OrderPage"
              Title="OrderPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to OrderPage"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <StackLayout
+            Margin="10"
+            Orientation="Horizontal">
+            <Label Text="Pizza:"
+                   Margin="5"
+                   VerticalOptions="Center"/>
+            <Picker
+                x:Name="pizza_picker"
+                Title="Select a pizza to add">
+            </Picker>
+        </StackLayout>
+        <StackLayout
+            Margin="10"
+            Orientation="Horizontal">
+            <Label Text="Amount:"
+                   Margin="5"
+                   VerticalOptions="Center"/>
+            <Stepper
+                x:Name="pizza_count"
+                Minimum="1"/>
+        </StackLayout>
+        <StackLayout
+            Margin="10"
+            Orientation="Horizontal">
+            <Label Text="Extra toppings:"
+                   Margin="5"
+                   VerticalOptions="Center"/>
+            <Picker
+                x:Name="topping_picker"
+                Title="Select a topping to add">
+            </Picker>
+        </StackLayout>
+        <Button
+            Text="Add to order"
+            Margin="10"/>
+
+        <Label
+            Text="Current Order:"
+            Margin="10"
+            FontSize="Title"/>
     </VerticalStackLayout>
 </ContentPage>
