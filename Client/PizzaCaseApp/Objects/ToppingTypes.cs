@@ -23,5 +23,23 @@ namespace PizzaCaseApp.Objects
         public static readonly string Jalapenos = "Jalapenos";
         public static readonly string Mozzarella = "Mozzarella";
         public static readonly string Bellpeppers = "Bellpeppers";
+
+        public static readonly List<string> AllTypes = new() {
+            "Onion",
+            "Tuna",
+            "Pepperoni",
+            "Black Olives",
+            "Green Olives",
+            "Mushrooms",
+            "Extra Cheese",
+            "Pesto",
+            "pineapple",
+            "Ham",
+            "Anchovies",
+            "Chicken",
+            "Jalapenos",
+            "Mozzarella",
+            "Bellpeppers"
+        };
     }
 }

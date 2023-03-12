@@ -8,7 +8,7 @@ namespace PizzaCaseApp.Objects
 {
     internal class Pizza
     {
-        private string Type { get; set; }
-        private List<PizzaTopping> toppings = new List<PizzaTopping>();
+        public string Type { get; set; }
+        public List<PizzaTopping> toppings = new List<PizzaTopping>();
     }
 }

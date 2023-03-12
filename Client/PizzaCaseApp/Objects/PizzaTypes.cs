@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace PizzaCaseApp.Objects
+﻿namespace PizzaCaseApp.Objects
 {
     internal static class PizzaTypes
     {
@@ -14,5 +8,15 @@ namespace PizzaCaseApp.Objects
         public static readonly string Hawaii = "Hawaii";
         public static readonly string Pollo = "Pollo";
         public static readonly string Peperoni = "Peperoni";
+
+        public static readonly List<string> AllTypes = new()
+            {
+            "Margherita",
+            "Tonno",
+            "Cheese",
+            "Hawaii",
+            "Pollo",
+            "Peperoni"
+            };
     }
 }
