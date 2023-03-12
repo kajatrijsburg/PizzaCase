@@ -8,6 +8,10 @@
     Shell.FlyoutBehavior="Disabled">
 
     <TabBar>
+        <ShellContent Title="UserInfo"
+                      Icon="user_solid.svg"
+                      ContentTemplate="{DataTemplate pages:UserInfoPage}" />
+        
         <ShellContent Title="Order"
                       Icon="pizza_slice_solid.svg"
                       ContentTemplate="{DataTemplate pages:OrderPage}" />

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="PizzaCaseApp.Pages.UserInfoPage"
+             Title="UserInfoPage">
+    <VerticalStackLayout>
+        <StackLayout 
+            Orientation="Horizontal"
+            Margin="10">
+            <Label 
+                Text="Name:"
+                Margin="5"/>
+            <Entry
+                Placeholder="first name"
+            />
+            <Entry
+                Placeholder="last name"
+            />
+        </StackLayout>
+        <StackLayout 
+            Orientation="Horizontal"
+            Margin="10">
+            <Label 
+                Text="Address:"
+                Margin="5"/>
+            <Entry
+                Placeholder="SomeStreet 23"
+            />
+        </StackLayout>
+        <StackLayout 
+            Orientation="Horizontal"
+            Margin="10">
+            <Label 
+                Text="Postal code:"
+                Margin="5"/>
+            <Entry
+                Placeholder="AB1234CD"
+            />
+        </StackLayout>
+        <StackLayout 
+            Orientation="Horizontal"
+            Margin="10">
+            <Label 
+                Text="Phone number:"
+                Margin="5"/>
+            <Entry
+                Placeholder="+31 415 9265"
+            />
+        </StackLayout>
+        <Button
+            Text="Save"
+            BackgroundColor="LightGreen"
+            TextColor="Black">
+            
+        </Button>
+        
+    </VerticalStackLayout>
+</ContentPage>

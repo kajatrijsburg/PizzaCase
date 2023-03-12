@@ -51,6 +51,7 @@
 	<ItemGroup>
 	  <None Remove="Resources\Images\gear_solid.svg" />
 	  <None Remove="Resources\Images\pizza_slice_solid.svg" />
+	  <None Remove="Resources\Images\user_solid.svg" />
 	</ItemGroup>
 
 	<ItemGroup>
@@ -62,6 +63,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Pages\SettingsPage.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Pages\UserInfoPage.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	</ItemGroup>
