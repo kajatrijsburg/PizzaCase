@@ -1,12 +1,12 @@
 public class SocketUDP : Socket
 {
-	public abstract void Close();
+	public void Close() { }
 
-	public abstract void Connect(string ipAddress);
+	public void Connect(string ipAddress) { }
 
-	public abstract void Send(byte[] byteArray);
+    public void Send(byte[] byteArray) { }
 
-	public abstract void Recieve(byte[] byteArray[]);
+    public void Recieve(byte[] byteArray) { }
 
 }
 

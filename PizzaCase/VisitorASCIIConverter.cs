@@ -1,8 +1,8 @@
 public class VisitorASCIIConverter : Visitor
 {
-	public abstract void VisitOrder();
+	public void VisitOrder() { }
 
-	public abstract void VisitPizza();
+	public void VisitPizza() { }
 
 }
 

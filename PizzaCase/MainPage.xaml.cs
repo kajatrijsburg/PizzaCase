@@ -3,22 +3,23 @@
     public partial class MainPage : ContentPage
     {
         int count = 0;
+        public SocketTCP tCP;
+        public byte[] data;
 
         public MainPage()
         {
             InitializeComponent();
+            tCP = new SocketTCP();
         }
 
         private void OnCounterClicked(object sender, EventArgs e)
         {
-            count++;
+            tCP.Connect("127.0.0.1");
+            tCP.Recieve(data);
+            CounterBtn.Text = tCP.decodeddata;
+            tCP.Close();
 
-            if (count == 1)
-                CounterBtn.Text = $"Clicked {count} time";
-            else
-                CounterBtn.Text = $"Clicked {count} times";
-
-            SemanticScreenReader.Announce(CounterBtn.Text);
+            //SemanticScreenReader.Announce(CounterBtn.Text);
         }
     }
 
