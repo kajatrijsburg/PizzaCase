@@ -1,4 +1,4 @@
-public class VisitorByteConverter : Visitor
+public class VisitorASCIIConverter : Visitor
 {
 	public abstract void VisitOrder();
 

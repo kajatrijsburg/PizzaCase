@@ -1,6 +1,4 @@
-using PizzaCase;
-
-public class Pizza : IAcceptVisitor
+public class Pizza
 {
 	public string name;
 
@@ -8,9 +6,9 @@ public class Pizza : IAcceptVisitor
 
 	public List<string> extraToppings;
 
-    public void Accept(IVisitor Visitor)
+	public void Accept(Visitor Visitor)
 	{
-		Visitor.VisitPizza(this);
+
 	}
 
 }

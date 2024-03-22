@@ -1,6 +1,4 @@
-using PizzaCase;
-
-public class Order : IAcceptVisitor
+public class Order
 {
 	public string name;
 
@@ -14,11 +12,11 @@ public class Order : IAcceptVisitor
 
 	public List<Pizza> pizzas;
 
-	public DateTime timeSend;
+	private DateTime timeSend;
 
-	public void Accept(IVisitor Visitor)
+	public void Accept(Visitor Visitor)
 	{
-		Visitor.VisitOrder(this);
+
 	}
 
 }
