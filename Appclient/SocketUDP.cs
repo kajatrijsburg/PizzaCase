@@ -6,7 +6,6 @@ public class SocketUDP : Socket
 {
 
     private System.Net.Sockets.Socket s;
-    //private System.Net.Sockets.Socket Acceptsocket;
     public string decodeddata;
 
     public void Close()
@@ -19,7 +18,7 @@ public class SocketUDP : Socket
     {
         s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
 
-        s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), 12345));
+        s.Connect(new IPEndPoint(IPAddress.Parse(ipAddress), 12345));
 
     }
 

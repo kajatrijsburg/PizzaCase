@@ -5,42 +5,36 @@ using System.Text;
 public class SocketTCP : Socket
 {
     private System.Net.Sockets.Socket s;
-    private System.Net.Sockets.Socket Acceptsocket;
     public string decodeddata;
 
     //todo add get
 
 
     public void Close() {
-        Acceptsocket.Close();
+        s.Close();
     }
 
     public void Connect(string ipAddress) {
         s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
 
-        s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), 12345));
-     
-        s.Listen(1);
-        Acceptsocket = s.Accept();
-        s.Close();
+        s.Connect(IPAddress.Parse(ipAddress), 12345);
 
     }
 
     public void Send(byte[] byteArray) {
 
-        Acceptsocket.Send(byteArray);
+        s.Send(byteArray);
         //send oreder has been received.
     }
 
 
     public void Recieve(byte[] byteArray) {
-        byte[] bytes = new byte[Acceptsocket.SendBufferSize];
-        int j = Acceptsocket.Receive(bytes);
-        byte[] bytearray = new byte[j]; //todo change to bytearray
+        byte[] bytes = new byte[s.SendBufferSize];
+        int j = s.Receive(bytes);
+        byte[] bytearray = new byte[j]; 
         for (int i = 0; i < j; i++)
             bytearray[i] = bytes[i];
         decodeddata = Encoding.UTF8.GetString(bytearray);
-        //make pizza order aan.
     }
 }
 
