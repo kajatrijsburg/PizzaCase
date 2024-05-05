@@ -13,22 +13,19 @@
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
-            <Label
-                Text="Hello, World!"
-                Style="{StaticResource Headline}"
-                SemanticProperties.HeadingLevel="Level1" />
-
-            <Label
-                Text="Welcome to &#10;.NET Multi-platform App UI"
-                Style="{StaticResource SubHeadline}"
-                SemanticProperties.HeadingLevel="Level2"
-                SemanticProperties.Description="Welcome to dot net Multi platform App U I" />
-
+            <Label x:Name ="text"
+                   Text="order"/>
             <Button
-                x:Name="CounterBtn"
-                Text="Click me" 
+                x:Name="udpbtn"
+                Text="Udp" 
                 SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OnCounterClicked"
+                Clicked="OnudpbtnClicked"
+                HorizontalOptions="Fill" />
+            <Button
+                x:Name="tcpbtn"
+                Text="Tcp" 
+                SemanticProperties.Hint="Counts the number of times you click"
+                Clicked="OntcpbtnClicked"
                 HorizontalOptions="Fill" />
         </VerticalStackLayout>
     </ScrollView>

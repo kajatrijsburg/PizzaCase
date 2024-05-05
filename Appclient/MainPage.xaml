@@ -23,8 +23,7 @@
             <Button x:Name="BtnAddTopping" Clicked="BtnAddtopping_Clicked" Text = "addtop"/>
 
             <Button x:Name="BtnAddPizza" Clicked="BtnAddPizza_Clicked" Text="add pizza" />
-            <Button x:Name="BtnOrder" Clicked="BtnOrder_Clicked" Text="place order" />
-    
+
             <Button x:Name="sendudp" Clicked="sendudp_Clicked" Text="send through udp" />
             <Button x:Name="sendtcp" Clicked="sendtcp_Clicked" Text="send through tcp" />
 

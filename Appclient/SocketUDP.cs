@@ -8,17 +8,25 @@ public class SocketUDP : Socket
     private System.Net.Sockets.Socket s;
     public string decodeddata;
 
+    public SocketUDP()
+    {
+        s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+    }
+
+    ~SocketUDP() {
+        Close();
+    }
+
     public void Close()
     {
         s.Close();
 
     }
 
-    public void Connect(string ipAddress)
+    public void Connect(string ipAddress, int port)
     {
         s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-
-        s.Connect(new IPEndPoint(IPAddress.Parse(ipAddress), 12345));
+        s.Connect(new IPEndPoint(IPAddress.Parse(ipAddress), port));
 
     }
 
@@ -30,14 +38,6 @@ public class SocketUDP : Socket
 
     public void Recieve(byte[] byteArray)
     {
-        byte[] bytes = new byte[s.SendBufferSize];
-        int j = s.Receive(bytes);
-        byte[] bytearray = new byte[j]; //todo change to bytearray
-        for (int i = 0; i < j; i++)
-            bytearray[i] = bytes[i];
-        decodeddata = Encoding.UTF8.GetString(bytearray);
-        //make pizza order aan.}
-
     }
 }
 

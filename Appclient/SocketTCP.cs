@@ -9,15 +9,23 @@ public class SocketTCP : Socket
 
     //todo add get
 
+    public SocketTCP()
+    {
+        s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    }
+
+    ~SocketTCP() 
+    {
+        Close();
+    }
 
     public void Close() {
         s.Close();
     }
 
-    public void Connect(string ipAddress) {
-        s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    public void Connect(string ipAddress, int port) {
 
-        s.Connect(IPAddress.Parse(ipAddress), 12345);
+        s.Connect(IPAddress.Parse(ipAddress), port);
 
     }
 
@@ -29,12 +37,6 @@ public class SocketTCP : Socket
 
 
     public void Recieve(byte[] byteArray) {
-        byte[] bytes = new byte[s.SendBufferSize];
-        int j = s.Receive(bytes);
-        byte[] bytearray = new byte[j]; 
-        for (int i = 0; i < j; i++)
-            bytearray[i] = bytes[i];
-        decodeddata = Encoding.UTF8.GetString(bytearray);
     }
 }
 

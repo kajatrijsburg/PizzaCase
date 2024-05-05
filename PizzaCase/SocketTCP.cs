@@ -8,21 +8,32 @@ public class SocketTCP : Socket
     private System.Net.Sockets.Socket Acceptsocket;
     public string decodeddata;
 
-    //todo add get
+    private int listensockets = 1;
+
+    public SocketTCP()
+    {
+        s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    }
+
+    ~SocketTCP()
+    {
+        Close();
+    }
 
 
     public void Close() {
-        Acceptsocket.Close();
+
+         Acceptsocket.Close();
+
     }
 
-    public void Connect(string ipAddress) {
-        s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+    public void Connect(string ipAddress, int port) {
+            s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+            s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
 
-        s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), 12345));
-     
-        s.Listen(1);
-        Acceptsocket = s.Accept();
-        s.Close();
+            s.Listen(listensockets);
+            Acceptsocket = s.Accept();
+            s.Close();
 
     }
 
@@ -34,13 +45,15 @@ public class SocketTCP : Socket
 
 
     public void Recieve(byte[] byteArray) {
-        byte[] bytes = new byte[Acceptsocket.SendBufferSize];
-        int j = Acceptsocket.Receive(bytes);
-        byte[] bytearray = new byte[j]; //todo change to bytearray
-        for (int i = 0; i < j; i++)
-            bytearray[i] = bytes[i];
-        decodeddata = Encoding.UTF8.GetString(bytearray);
-        //make pizza order aan.
+        if (Acceptsocket != null) {
+            byte[] bytes = new byte[Acceptsocket.SendBufferSize];
+            int j = Acceptsocket.ReceiveAsync(bytes).Result;
+            byte[] bytearray = new byte[j]; //todo change to bytearray
+            for (int i = 0; i < j; i++)
+                bytearray[i] = bytes[i];
+            decodeddata = Encoding.UTF8.GetString(bytearray);
+        }
+
     }
 }
 

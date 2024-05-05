@@ -1,40 +1,51 @@
-﻿namespace PizzaCase
+﻿using Microsoft.Maui.Dispatching;
+
+namespace PizzaCase
 {
     public partial class MainPage : ContentPage
     {
         int count = 0;
-        public SocketTCP Tcp;
-        public SocketUDP Udp;
         public byte[] data;
-       
+
         public MainPage()
         {
             InitializeComponent();
-            Tcp = new SocketTCP();
-            Udp = new SocketUDP();
+
         }
 
-        private void OnCounterClicked(object sender, EventArgs e)
-        {
+        private void OnudpbtnClicked(object sender, EventArgs e)
+        { 
             udpset();
+            //SemanticScreenReader.Announce(CounterBtn.Text);
+        }
 
+        private void OntcpbtnClicked(object sender, EventArgs e)
+        {
+            tcpset();
+            //udpset();
             //SemanticScreenReader.Announce(CounterBtn.Text);
         }
 
 
         public void tcpset()
         {
-            Tcp.Connect("192.168.2.2");
+            SocketTCP Tcp = new SocketTCP();
+            Tcp.Connect("192.168.2.7", 12345);
             Tcp.Recieve(data);
-            CounterBtn.Text = Tcp.decodeddata;
+
+            text.Text = Tcp.decodeddata;
+
             Tcp.Close();
+
         }
 
         public void udpset()
         {
-            Udp.Connect("192.168.2.2");
+            SocketUDP Udp = new SocketUDP();
+            Udp.Connect("192.168.2.7", 12345);
             Udp.Recieve(data);
-            CounterBtn.Text = Udp.decodeddata;
+
+            text.Text = Udp.decodeddata;
             Udp.Close();
         }
 
