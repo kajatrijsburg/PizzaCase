@@ -12,6 +12,15 @@ namespace PizzaCase
 
         private static readonly int iterations = 1000;
         private static readonly byte[] salt = Encoding.UTF8.GetBytes("placeholder");
+
+        /// <summary>
+        /// Takes plain text, a key and an initialization vector and encrypts it, returning the result as a string.
+        /// </summary>
+        /// <param name="plainText"></param>
+        /// <param name="key"></param>
+        /// <param name="InitalizationVector"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static string encrypt(string plainText, string key, string InitalizationVector)
         {
             // check arguments
@@ -70,6 +79,14 @@ namespace PizzaCase
             return Convert.ToBase64String(encrypted_bytes);
         }
 
+        /// <summary>
+        /// takes an encrypted string, key and an initialization vector and decrypts the string, returning the plain text
+        /// </summary>
+        /// <param name="encryptedString"></param>
+        /// <param name="key"></param>
+        /// <param name="InitalizationVector"></param>
+        /// <returns></returns>
+        /// <exception cref="ArgumentNullException"></exception>
         public static string decrypt(string encryptedString, string key, string InitalizationVector) {
             // check arguments
             {
