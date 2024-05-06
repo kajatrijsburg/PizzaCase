@@ -39,8 +39,8 @@ namespace PizzaCase
             Aes aes = Aes.Create();
 
             // convert arguments to byte arrays
-            byte[] key_bytes = Encoding.UTF8.GetBytes(key);
-            byte[] iv_bytes = Encoding.UTF8.GetBytes(InitalizationVector);
+            byte[] key_bytes = Convert.FromBase64String(key);
+            byte[] iv_bytes = Convert.FromBase64String(InitalizationVector);
 
             // aes only accepts keys that are of a certain byte size.
             // for easier use we will derive a key of the correct size using Rfc2898DeriveBytes
@@ -106,8 +106,8 @@ namespace PizzaCase
 
             // convert arguments to byte arrays
             byte[] encrypted_bytes = Convert.FromBase64String(encryptedString);
-            byte[] key_bytes = Encoding.UTF8.GetBytes(key);
-            byte[] iv_bytes = Encoding.UTF8.GetBytes(InitalizationVector);
+            byte[] key_bytes = Convert.FromBase64String(key);
+            byte[] iv_bytes = Convert.FromBase64String(InitalizationVector);
 
             // aes only accepts keys that are of a certain byte size.
             // for easier use we will derive a key of the correct size using Rfc2898DeriveBytes
