@@ -16,8 +16,8 @@ public class SocketUDP : Socket
     }
 
     ~SocketUDP() {
-        Close();
 
+        Close();
     }
 
     public void Close()
@@ -27,8 +27,7 @@ public class SocketUDP : Socket
 
     public void Connect(string ipAddress, int port)
     {
-        s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
-
+            s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
     }
 
     public void Send(byte[] byteArray)
@@ -39,13 +38,16 @@ public class SocketUDP : Socket
 
     public void Recieve(byte[] byteArray)
     {
-       byte[] bytes = new byte[s.SendBufferSize];
-       int j = s.Receive(bytes);
-       byte[] bytearray = new byte[j]; 
-       for (int i = 0; i < j; i++)
-           bytearray[i] = bytes[i];
-       decodeddata = Encoding.UTF8.GetString(bytearray);
-        
+        byte[] bytes = new byte[s.SendBufferSize];
+
+        int j = s.Receive(bytes);
+        byte[] bytearray = new byte[j];
+        for (int i = 0; i < j; i++)
+            bytearray[i] = bytes[i];
+        decodeddata = Encoding.UTF8.GetString(bytearray);
+       
+       
+
     }
 }
 

@@ -12,7 +12,8 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-
+            <Label x:Name ="connecttext"
+                   Text="order"/>
             <Label x:Name ="text"
                    Text="order"/>
             <Button
@@ -21,12 +22,7 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnudpbtnClicked"
                 HorizontalOptions="Fill" />
-            <Button
-                x:Name="tcpbtn"
-                Text="Tcp" 
-                SemanticProperties.Hint="Counts the number of times you click"
-                Clicked="OntcpbtnClicked"
-                HorizontalOptions="Fill" />
+
         </VerticalStackLayout>
     </ScrollView>
 

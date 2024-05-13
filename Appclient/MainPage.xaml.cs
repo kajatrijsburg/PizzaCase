@@ -70,7 +70,7 @@ namespace Appclient
         private void sendtcp_Clicked(object sender, EventArgs e)
         {
             Tcp = new SocketTCP();
-            Tcp.Connect("192.168.2.7", 12345);
+            Tcp.Connect("192.168.2.7", 12344);
             set_order();
             Tcp.Send(data);
             Tcp.Close();

@@ -22,18 +22,24 @@ public class SocketTCP : Socket
 
 
     public void Close() {
+        if (Acceptsocket != null)
+        {
+            Acceptsocket.Close();
 
-         Acceptsocket.Close();
+        }
 
     }
 
     public void Connect(string ipAddress, int port) {
-            s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+        try
+        {
             s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
-
+           
             s.Listen(listensockets);
             Acceptsocket = s.Accept();
             s.Close();
+        }
+        catch (Exception ex) { }
 
     }
 
@@ -45,14 +51,18 @@ public class SocketTCP : Socket
 
 
     public void Recieve(byte[] byteArray) {
-        if (Acceptsocket != null) {
-            byte[] bytes = new byte[Acceptsocket.SendBufferSize];
-            int j = Acceptsocket.ReceiveAsync(bytes).Result;
-            byte[] bytearray = new byte[j]; //todo change to bytearray
-            for (int i = 0; i < j; i++)
-                bytearray[i] = bytes[i];
-            decodeddata = Encoding.UTF8.GetString(bytearray);
+        if (Acceptsocket == null) {
+            return;
         }
+
+        byte[] bytes = new byte[Acceptsocket.SendBufferSize];
+
+        int j = Acceptsocket.Receive(bytes);
+        byte[] bytearray = new byte[j]; //todo change to bytearray
+        for (int i = 0; i < j; i++)
+            bytearray[i] = bytes[i];
+        decodeddata = Encoding.UTF8.GetString(bytearray);
+        
 
     }
 }
