@@ -16,11 +16,11 @@ namespace PizzaCase
         /// <summary>
         /// Takes plain text, a key and an initialization vector and encrypts it, returning the result as a string.
         /// </summary>
-        /// <param name="plainText"></param>
-        /// <param name="key"></param>
-        /// <param name="InitalizationVector"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="plainText"> the text that will be encrypted</param>
+        /// <param name="key">the encryption key</param>
+        /// <param name="InitalizationVector">sets the initialization vector. This number is needed by the encryption algorithm to correctly encrypt the data.</param>
+        /// <returns>encrypted data</returns>
+        /// <exception cref="ArgumentNullException"> throws on null imput</exception>
         public static string encrypt(string plainText, string key, string InitalizationVector)
         {
             // check arguments
@@ -82,11 +82,11 @@ namespace PizzaCase
         /// <summary>
         /// takes an encrypted string, key and an initialization vector and decrypts the string, returning the plain text
         /// </summary>
-        /// <param name="encryptedString"></param>
-        /// <param name="key"></param>
-        /// <param name="InitalizationVector"></param>
-        /// <returns></returns>
-        /// <exception cref="ArgumentNullException"></exception>
+        /// <param name="plainText"> the text that will be encrypted</param>
+        /// <param name="key">the encryption key</param>
+        /// <param name="InitalizationVector">sets the initialization vector. This number is needed by the encryption algorithm to correctly encrypt the data.</param>
+        /// <returns>encrypted data</returns>
+        /// <exception cref="ArgumentNullException"> throws on null imput</exception>
         public static string decrypt(string encryptedString, string key, string InitalizationVector) {
             // check arguments
             {
