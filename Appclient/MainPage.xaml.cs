@@ -4,13 +4,12 @@ namespace Appclient
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
-        bool pizzaord = false;
         public SocketTCP Tcp;
         public SocketUDP Udp;
         public byte[] data;
         public Order order;
         public Pizza pizza;
+        public string ipadress = "192.168.1.250";
 
         public MainPage()
         {
@@ -22,7 +21,7 @@ namespace Appclient
         }
 
         /// <summary>
-        /// add the pizza to the pizza to list
+        /// add the pizza to the pizza to list, and reset the input field
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -38,7 +37,7 @@ namespace Appclient
 
         }
         /// <summary>
-        /// add the toppings
+        /// add the toppings, and reset the input field
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -56,7 +55,7 @@ namespace Appclient
         private void sendudp_Clicked(object sender, EventArgs e)
         {
             Udp = new SocketUDP();
-            Udp.Connect("192.168.1.250", 12345);
+            Udp.Connect(ipadress, 12345);
             set_order();
             Udp.Send(data);
             Udp.Close();
@@ -70,12 +69,15 @@ namespace Appclient
         private void sendtcp_Clicked(object sender, EventArgs e)
         {
             Tcp = new SocketTCP();
-            Tcp.Connect("192.168.1.250", 12344);
+            Tcp.Connect(ipadress, 12344);
             set_order();
             Tcp.Send(data);
             Tcp.Close();
         }
 
+        /// <summary>
+        /// create the order, convert order to bytes and reset the input fields
+        /// </summary>
         private void set_order()
         {
             order.name = name.Text;
@@ -84,7 +86,6 @@ namespace Appclient
             order.street = street.Text;
             order.housenumber = housenumber.Text;
             order.timeSend = DateTime.Now;
-
 
             VisitorByteConverter convert = new VisitorByteConverter();
             convert.VisitOrder(order);

@@ -6,16 +6,19 @@ namespace PizzaCase
 {
     public partial class MainPage : ContentPage
     {
-        int count = 0;
         public byte[] data;
-
+        public string ipadress = "192.168.1.250";
 
         public MainPage()
         {
             InitializeComponent();
-
         }
 
+        /// <summary>
+        /// start the two threads for udp and tcp.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void OnudpbtnClicked(object sender, EventArgs e)
         {
             Thread tcp = new Thread(tcpset);
@@ -25,78 +28,65 @@ namespace PizzaCase
 
         }
 
-        private void tick()
-        {
-
-                Thread udp = new Thread(udpset);
-                udp.Start();
-
-                Thread tcp = new Thread(tcpset);
-                tcp.Start();
-
-  
-        }
-
+        /// <summary>
+        /// Tcp thread runs only while mainthread is running
+        /// </summary>
         public void tcpset()
         {
             {
                 SocketTCP Tcp = new SocketTCP();
-                Tcp.Connect("192.168.1.250", 12344);
-                //Thread.Sleep(1000);
+                Tcp.Connect(ipadress, 12344);
                 while (MainThread.GetMainThreadSynchronizationContextAsync() != null)
                 {
                     try {
+
                         Tcp.Recieve(data);
 
-                        if (Tcp.decodeddata.Length == 0) { continue; }
+                        if (Tcp.GetDecodedData().Length == 0) { continue; }
 
                         MainThread.BeginInvokeOnMainThread(() =>
                         {
-                            text.Text = Tcp.decodeddata;
-                            Tcp.decodeddata = "";
+                            text.Text = Tcp.GetDecodedData();
+                            Tcp.SetDecodedData("");
                         });
-                    } catch (Exception ex)
-                    {
-                        break;
-                    }
-                    
+
+                    } catch { break; }
                 }
                 
-
-            } //tpc is niet meer in scope
+            } //tcp is niet meer in scope
 
             GC.Collect();
         }
 
+        /// <summary>
+        /// udp thread runs only while mainthread is running
+        /// </summary>
         public void udpset()
         {
             {
                 SocketUDP Udp = new SocketUDP();
-                Udp.Connect("192.168.1.250", 12345);
+                Udp.Connect(ipadress, 12345);
                 while (MainThread.GetMainThreadSynchronizationContextAsync() != null)
                 {
                     try {
                         Udp.Recieve(data);
 
-                        if (Udp.decodeddata.Length == 0) { continue; }
+                        if (Udp.GetDecodedData().Length == 0) { continue; }
 
                         MainThread.BeginInvokeOnMainThread(() =>
                         {
-                            text.Text = Udp.decodeddata;
-                            Udp.decodeddata = "";
+                            text.Text = Udp.GetDecodedData();
+                            Udp.SetDecodedData("");
                         });
                     }
-                    catch (Exception ex) { break; }
+                    catch{ break; }
                     
                 }
-                
-            }
-            
+
+            }//udp is niet meer in scope
 
             GC.Collect();
 
         }
-
     }
-
 }

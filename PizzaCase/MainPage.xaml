@@ -12,13 +12,11 @@
                 HeightRequest="185"
                 Aspect="AspectFit"
                 SemanticProperties.Description="dot net bot in a race car number eight" />
-            <Label x:Name ="connecttext"
-                   Text="order"/>
             <Label x:Name ="text"
                    Text="order"/>
             <Button
                 x:Name="udpbtn"
-                Text="Udp" 
+                Text="start server" 
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnudpbtnClicked"
                 HorizontalOptions="Fill" />

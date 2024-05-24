@@ -5,8 +5,8 @@ using System.Text;
 public class SocketTCP : Socket
 {
     private System.Net.Sockets.Socket s;
-    private System.Net.Sockets.Socket Acceptsocket;
-    public string decodeddata = "";
+    private System.Net.Sockets.Socket acceptsocket;
+    private string decodeddata = "";
     private readonly int timeout = 1000;
 
     private int listensockets = 1;
@@ -21,59 +21,64 @@ public class SocketTCP : Socket
         Close();
     }
 
-
+    /// <summary>
+    /// close the socket.
+    /// </summary>
     public void Close() {
-        if (Acceptsocket != null)
+        if (acceptsocket != null)
         {
-            Acceptsocket.Close();
-
+            acceptsocket.Close();
         }
-
     }
 
+    /// <summary>
+    /// bind the server socket to endpoint, and put it in listening state for any connections
+    /// </summary>
+    /// <param name="ipAddress">the ipadress that will be connected</param>
+    /// <param name="port">the port that will be listend on</param>
     public void Connect(string ipAddress, int port) {
         try
         {
             s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
            
             s.Listen(listensockets);
-            
-            //s.Close();
         }
         catch (Exception ex) { }
 
     }
 
-    public void Send(byte[] byteArray) {
-
-        Acceptsocket.Send(byteArray);
-        //send oreder has been received.
-    }
-
-
+    /// <summary>
+    /// receive data from client.
+    /// </summary>
+    /// <param name="byteArray">the bytearray to which the received data will be copied</param>
     public void Recieve(byte[] byteArray) {
-        Acceptsocket = s.Accept();
+        acceptsocket = s.Accept();
 
-        if (Acceptsocket == null) {
+        if (acceptsocket == null) {
             return;
         }
 
-        Acceptsocket.ReceiveTimeout = timeout;
+        acceptsocket.ReceiveTimeout = timeout;
 
-        byte[] bytes = new byte[Acceptsocket.SendBufferSize];
+        byte[] bytes = new byte[acceptsocket.SendBufferSize];
         int j;
         try
         {
-           j = Acceptsocket.Receive(bytes);
+           j = acceptsocket.Receive(bytes);
         } catch { return;  }
         
 
-        byte[] bytearray = new byte[j]; //todo change to bytearray
+        byte[] bytearray = new byte[j];
         for (int i = 0; i < j; i++)
             bytearray[i] = bytes[i];
         decodeddata = Encoding.UTF8.GetString(bytearray);
         
 
     }
+
+
+    public string GetDecodedData() { return decodeddata; }
+
+    public void SetDecodedData(string decodeddata) { this.decodeddata = decodeddata; }
 }
 

@@ -6,7 +6,5 @@ public interface Socket
 
 	void Send(byte[] byteArray);
 
-	void Recieve(byte[] byteArray);
-
 }
 
