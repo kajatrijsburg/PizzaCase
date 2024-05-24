@@ -6,7 +6,8 @@ public class SocketTCP : Socket
 {
     private System.Net.Sockets.Socket s;
     private System.Net.Sockets.Socket Acceptsocket;
-    public string decodeddata;
+    public string decodeddata = "";
+    private readonly int timeout = 1000;
 
     private int listensockets = 1;
 
@@ -36,8 +37,8 @@ public class SocketTCP : Socket
             s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
            
             s.Listen(listensockets);
-            Acceptsocket = s.Accept();
-            s.Close();
+            
+            //s.Close();
         }
         catch (Exception ex) { }
 
@@ -51,13 +52,22 @@ public class SocketTCP : Socket
 
 
     public void Recieve(byte[] byteArray) {
+        Acceptsocket = s.Accept();
+
         if (Acceptsocket == null) {
             return;
         }
 
-        byte[] bytes = new byte[Acceptsocket.SendBufferSize];
+        Acceptsocket.ReceiveTimeout = timeout;
 
-        int j = Acceptsocket.Receive(bytes);
+        byte[] bytes = new byte[Acceptsocket.SendBufferSize];
+        int j;
+        try
+        {
+           j = Acceptsocket.Receive(bytes);
+        } catch { return;  }
+        
+
         byte[] bytearray = new byte[j]; //todo change to bytearray
         for (int i = 0; i < j; i++)
             bytearray[i] = bytes[i];

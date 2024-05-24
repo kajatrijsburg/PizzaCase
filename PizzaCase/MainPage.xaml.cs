@@ -39,32 +39,59 @@ namespace PizzaCase
 
         public void tcpset()
         {
-
-            SocketTCP Tcp = new SocketTCP();
-            Tcp.Connect("192.168.2.7", 12344);
-            //Thread.Sleep(1000);
-            Tcp.Recieve(data);
-
-            MainThread.BeginInvokeOnMainThread(() =>
             {
-                text.Text = Tcp.decodeddata;
-            });
+                SocketTCP Tcp = new SocketTCP();
+                Tcp.Connect("192.168.1.250", 12344);
+                //Thread.Sleep(1000);
+                while (MainThread.GetMainThreadSynchronizationContextAsync() != null)
+                {
+                    try {
+                        Tcp.Recieve(data);
+
+                        if (Tcp.decodeddata.Length == 0) { continue; }
+
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            text.Text = Tcp.decodeddata;
+                            Tcp.decodeddata = "";
+                        });
+                    } catch (Exception ex)
+                    {
+                        break;
+                    }
+                    
+                }
+                
+
+            } //tpc is niet meer in scope
 
             GC.Collect();
-
         }
 
         public void udpset()
         {
-            SocketUDP Udp = new SocketUDP();
-            Udp.Connect("192.168.2.7", 12345);
-
-            Udp.Recieve(data);
-
-            MainThread.BeginInvokeOnMainThread(() =>
             {
-                text.Text = Udp.decodeddata;
-            });
+                SocketUDP Udp = new SocketUDP();
+                Udp.Connect("192.168.1.250", 12345);
+                while (MainThread.GetMainThreadSynchronizationContextAsync() != null)
+                {
+                    try {
+                        Udp.Recieve(data);
+
+                        if (Udp.decodeddata.Length == 0) { continue; }
+
+                        MainThread.BeginInvokeOnMainThread(() =>
+                        {
+                            text.Text = Udp.decodeddata;
+                            Udp.decodeddata = "";
+                        });
+                    }
+                    catch (Exception ex) { break; }
+                    
+                }
+                
+            }
+            
 
             GC.Collect();
 

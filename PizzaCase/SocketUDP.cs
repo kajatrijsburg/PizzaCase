@@ -7,12 +7,14 @@ public class SocketUDP : Socket
 
     private System.Net.Sockets.Socket s;
     //private System.Net.Sockets.Socket Acceptsocket;
-    public string decodeddata;
+    public string decodeddata = "";
     private bool connected;
+    private readonly int timeout = 1000;
 
     public SocketUDP()
     {
         s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        s.ReceiveTimeout = timeout;
     }
 
     ~SocketUDP() {
@@ -39,8 +41,13 @@ public class SocketUDP : Socket
     public void Recieve(byte[] byteArray)
     {
         byte[] bytes = new byte[s.SendBufferSize];
+        int j;
+        try
+        {
+            j = s.Receive(bytes);
+        }
+        catch { return; }
 
-        int j = s.Receive(bytes);
         byte[] bytearray = new byte[j];
         for (int i = 0; i < j; i++)
             bytearray[i] = bytes[i];

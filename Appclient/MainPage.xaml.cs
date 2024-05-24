@@ -56,7 +56,7 @@ namespace Appclient
         private void sendudp_Clicked(object sender, EventArgs e)
         {
             Udp = new SocketUDP();
-            Udp.Connect("192.168.2.7",12345);
+            Udp.Connect("192.168.1.250", 12345);
             set_order();
             Udp.Send(data);
             Udp.Close();
@@ -70,7 +70,7 @@ namespace Appclient
         private void sendtcp_Clicked(object sender, EventArgs e)
         {
             Tcp = new SocketTCP();
-            Tcp.Connect("192.168.2.7", 12344);
+            Tcp.Connect("192.168.1.250", 12344);
             set_order();
             Tcp.Send(data);
             Tcp.Close();
