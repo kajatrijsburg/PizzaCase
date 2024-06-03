@@ -1,12 +1,64 @@
+using System.Net.Sockets;
+using System.Net;
+using System.Text;
+
 public class SocketUDP : Socket
 {
-	public abstract void Close();
 
-	public abstract void Connect(string ipAddress);
+    private System.Net.Sockets.Socket s;
+    private string decodeddata = "";
+    private readonly int timeout = 1000;
 
-	public abstract void Send(byte[] byteArray);
+    public SocketUDP()
+    {
+        s = new System.Net.Sockets.Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+        s.ReceiveTimeout = timeout;
+    }
 
-	public abstract void Recieve(byte[] byteArray[]);
+    ~SocketUDP() {
 
+        Close();
+    }
+    /// <summary>
+    /// close server socket
+    /// </summary>
+    public void Close()
+    {
+        s.Close();
+    }
+
+    /// <summary>
+    /// bind the server socket to endpoint.
+    /// </summary>
+    /// <param name="ipAddress">the ipadress that will be connected</param>
+    /// <param name="port">the port that will be listend on</param>
+    public void Connect(string ipAddress, int port)
+    {
+            s.Bind(new IPEndPoint(IPAddress.Parse(ipAddress), port));
+    }
+
+    /// <summary>
+    /// receive data from client.
+    /// </summary>
+    /// <param name="byteArray">the bytearray to which the received data will be copied</param>
+    public void Recieve(byte[] byteArray)
+    {
+        byte[] bytes = new byte[s.SendBufferSize];
+        int j;
+        try
+        {
+            j = s.Receive(bytes);
+        }
+        catch { return; }
+
+        byte[] bytearray = new byte[j];
+        for (int i = 0; i < j; i++)
+            bytearray[i] = bytes[i];
+        decodeddata = Encoding.UTF8.GetString(bytearray);
+    }
+
+    public string GetDecodedData() { return decodeddata; }
+
+    public void SetDecodedData(string decodeddata) { this.decodeddata = decodeddata; }
 }
 

@@ -4,7 +4,7 @@ public interface Socket
 
 	void Connect(string ipAddress, int port);
 
-	void Recieve(byte[] byteArray);
+	void Send(byte[] byteArray);
 
 }
 

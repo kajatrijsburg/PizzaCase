@@ -1,0 +1,37 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Appclient.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout x:Name="items"
+            Padding="30,0"
+            Spacing="25">
+            <Label
+                Text="Place your order"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" />
+            <Entry x:Name="name" WidthRequest="500" Placeholder="name"/>
+            <Entry x:Name="postalCode" WidthRequest="500" Placeholder="postalCode"/>
+            <Entry x:Name="city" WidthRequest="500" Placeholder="city"/>
+            <Entry x:Name="street" WidthRequest="500" Placeholder="street"/>
+            <Entry x:Name="housenumber" WidthRequest="500" Placeholder="housenumber"/>
+            <Entry x:Name="pizzaname"  WidthRequest="500" Placeholder="name"/>
+            <Entry x:Name="pizzacount"  WidthRequest="500" Placeholder="count"/>
+
+            <Entry x:Name ="Topping"  WidthRequest="500" Placeholder="topping"/>
+            <Button x:Name="BtnAddTopping" Clicked="BtnAddtopping_Clicked" Text = "addtop"/>
+
+            <Button x:Name="BtnAddPizza" Clicked="BtnAddPizza_Clicked" Text="add pizza" />
+
+            <Button x:Name="sendudp" Clicked="sendudp_Clicked" Text="send through udp" />
+            <Button x:Name="sendtcp" Clicked="sendtcp_Clicked" Text="send through tcp" />
+
+            <VerticalStackLayout x:Name="test">
+                <Label x:Name="placeholder"></Label> 
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
