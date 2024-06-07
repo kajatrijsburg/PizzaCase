@@ -1,4 +1,8 @@
-﻿using System.Text;
+﻿using PizzaCase;
+using System.Net.Sockets;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 namespace Appclient
 {
@@ -87,9 +91,23 @@ namespace Appclient
             order.housenumber = housenumber.Text;
             order.timeSend = DateTime.Now;
 
-            VisitorByteConverter convert = new VisitorByteConverter();
+            VisitorUTFConverter convert = new VisitorUTFConverter();
             convert.VisitOrder(order);
-            data = convert.GetData();
+            Random ran = new Random();
+            string IV = "test";//ran.Next().ToString();
+            string text = Encryption.Encrypt(convert.GetString(), encryption_key.Text, IV);
+            EncryptedMessage message = new EncryptedMessage(text, IV);
+
+            var stream1 = new MemoryStream();
+            var ser = new DataContractJsonSerializer(typeof(EncryptedMessage));
+
+            ser.WriteObject(stream1, message);
+
+            stream1.Position = 0;
+            var sr = new StreamReader(stream1);
+            string mes = sr.ReadToEnd();
+            data = Encoding.Unicode.GetBytes(mes);
+            sr.Close();
 
             name.Text = "";
             postalCode.Text = "";

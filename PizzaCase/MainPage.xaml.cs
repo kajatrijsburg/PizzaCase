@@ -1,6 +1,8 @@
 ﻿using Microsoft.Maui.Animations;
 using Microsoft.Maui.Dispatching;
 using System.Runtime.Intrinsics.Arm;
+using System.Runtime.Serialization.Json;
+using System.Text;
 
 namespace PizzaCase
 {
@@ -46,8 +48,27 @@ namespace PizzaCase
 
                         MainThread.BeginInvokeOnMainThread(() =>
                         {
-                            text.Text = Tcp.GetDecodedData();
+                            byte[] data = Encoding.Unicode.GetBytes(Tcp.GetDecodedData());
                             Tcp.SetDecodedData("");
+
+                            var stream = new MemoryStream(data);
+                            var ser = new DataContractJsonSerializer(typeof(EncryptedMessage));
+
+                            stream.Position = 0;
+                            //Trace.WriteLine(System.Text.Encoding.Default.GetString(buffer));
+
+                            EncryptedMessage message = ser.ReadObject(stream) as EncryptedMessage; //todo add list
+
+                            try
+                            {
+                                text.Text = Encryption.Decrypt(message.message, encryption_key.Text, message.IV);
+                            }
+                            catch {
+                                text.Text = "decryption failed";
+                            }
+                            
+                            
+                            
                         });
 
                     } catch { break; }
@@ -75,8 +96,23 @@ namespace PizzaCase
 
                         MainThread.BeginInvokeOnMainThread(() =>
                         {
-                            text.Text = Udp.GetDecodedData();
+                            byte[] data = Encoding.Unicode.GetBytes(Udp.GetDecodedData());
                             Udp.SetDecodedData("");
+
+                            var stream = new MemoryStream(data);
+                            var ser = new DataContractJsonSerializer(typeof(EncryptedMessage));
+
+                            stream.Position = 0;
+                            //Trace.WriteLine(System.Text.Encoding.Default.GetString(buffer));
+
+                            EncryptedMessage message = ser.ReadObject(stream) as EncryptedMessage; //todo add list
+                            try
+                            {
+                                text.Text = Encryption.Decrypt(message.message, encryption_key.Text, message.IV);
+                            }
+                            catch {
+                                text.Text = "decryption failed";
+                            }
                         });
                     }
                     catch{ break; }

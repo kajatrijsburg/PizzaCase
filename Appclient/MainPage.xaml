@@ -20,12 +20,21 @@
             <Entry x:Name="pizzacount"  WidthRequest="500" Placeholder="count"/>
 
             <Entry x:Name ="Topping"  WidthRequest="500" Placeholder="topping"/>
+
+            <Label
+                Text="Encryption key"
+                Style="{StaticResource Headline}"
+                SemanticProperties.HeadingLevel="Level1" /> 
+            <Entry x:Name="encryption_key" WidthRequest="500" Placeholder="key"/>
+            
             <Button x:Name="BtnAddTopping" Clicked="BtnAddtopping_Clicked" Text = "addtop"/>
 
             <Button x:Name="BtnAddPizza" Clicked="BtnAddPizza_Clicked" Text="add pizza" />
 
             <Button x:Name="sendudp" Clicked="sendudp_Clicked" Text="send through udp" />
             <Button x:Name="sendtcp" Clicked="sendtcp_Clicked" Text="send through tcp" />
+
+            
 
             <VerticalStackLayout x:Name="test">
                 <Label x:Name="placeholder"></Label> 

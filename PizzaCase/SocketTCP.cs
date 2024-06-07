@@ -71,7 +71,7 @@ public class SocketTCP : Socket
         byte[] bytearray = new byte[j];
         for (int i = 0; i < j; i++)
             bytearray[i] = bytes[i];
-        decodeddata = Encoding.UTF8.GetString(bytearray);
+        decodeddata = Encoding.Unicode.GetString(bytearray);
         
 
     }

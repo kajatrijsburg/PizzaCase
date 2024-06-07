@@ -54,7 +54,7 @@ public class SocketUDP : Socket
         byte[] bytearray = new byte[j];
         for (int i = 0; i < j; i++)
             bytearray[i] = bytes[i];
-        decodeddata = Encoding.UTF8.GetString(bytearray);
+        decodeddata = Encoding.Unicode.GetString(bytearray);
     }
 
     public string GetDecodedData() { return decodeddata; }
