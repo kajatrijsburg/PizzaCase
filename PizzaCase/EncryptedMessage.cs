@@ -8,10 +8,10 @@ using System.Threading.Tasks;
 namespace PizzaCase
 {
     [DataContractAttribute]
-    internal class EncryptedMessage(string message, string iv)
+    internal class EncryptedMessage(byte[] message, string iv)
     {
         [DataMember]
-        public string message = message;
+        public byte[] message = message;
         [DataMember]
         public string IV = iv;
     }
