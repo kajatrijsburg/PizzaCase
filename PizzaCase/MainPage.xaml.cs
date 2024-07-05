@@ -9,7 +9,7 @@ namespace PizzaCase
     public partial class MainPage : ContentPage
     {
         public byte[] data;
-        public string ipadress = "192.168.1.250";
+        public string ipadress = "127.0.0.1";
 
         public MainPage()
         {
@@ -63,8 +63,8 @@ namespace PizzaCase
                             {
                                 text.Text = Encryption.Decrypt(message.message, encryption_key.Text, message.IV);
                             }
-                            catch {
-                                text.Text = "decryption failed";
+                            catch(Exception e) {
+                                text.Text = e.Message;
                             }
                             
                             
@@ -110,8 +110,9 @@ namespace PizzaCase
                             {
                                 text.Text = Encryption.Decrypt(message.message, encryption_key.Text, message.IV);
                             }
-                            catch {
-                                text.Text = "decryption failed";
+                            catch (Exception e)
+                            {
+                                text.Text = e.Message;
                             }
                         });
                     }
