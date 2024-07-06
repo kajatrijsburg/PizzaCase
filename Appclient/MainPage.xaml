@@ -11,7 +11,10 @@
                 Text="Place your order"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />
-            <Entry x:Name="name" WidthRequest="500" Placeholder="name"/>
+
+            <Label Text="" x:Name="error" HorizontalOptions="Center"/>
+
+            <Entry x:Name="name" WidthRequest="500" Placeholder="name" />
             <Entry x:Name="postalCode" WidthRequest="500" Placeholder="postalCode"/>
             <Entry x:Name="city" WidthRequest="500" Placeholder="city"/>
             <Entry x:Name="street" WidthRequest="500" Placeholder="street"/>
