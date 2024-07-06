@@ -13,7 +13,7 @@ namespace Appclient
         public byte[] data;
         public Order order;
         public Pizza pizza;
-        public string ipadress = "192.168.1.250";
+        public string ipadress = "127.0.0.1";
 
         public MainPage()
         {
@@ -120,7 +120,7 @@ namespace Appclient
             convert.VisitOrder(order);
             Random ran = new Random();
             string IV = "test";//ran.Next().ToString();
-            string text = Encryption.Encrypt(convert.GetString(), encryption_key.Text, IV);
+            byte[] text = Encryption.Encrypt(convert.GetString(), encryption_key.Text, IV);
             EncryptedMessage message = new EncryptedMessage(text, IV);
 
             var stream1 = new MemoryStream();
