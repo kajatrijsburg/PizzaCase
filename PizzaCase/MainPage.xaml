@@ -18,13 +18,17 @@
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" />     
             <Entry x:Name="encryption_key" WidthRequest="500" Placeholder="key"/>
+            <Button
+                x:Name="keybtn"
+                Text="set key" 
+                Clicked="OnkeybtnClicked"
+                HorizontalOptions="Center" />
 
             <Label x:Name ="text"
                    Text="order"/>
             <Button
                 x:Name="udpbtn"
                 Text="start server" 
-                SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnudpbtnClicked"
                 HorizontalOptions="Fill" />
 
