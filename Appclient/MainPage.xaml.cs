@@ -20,8 +20,8 @@ namespace Appclient
             InitializeComponent();
             order = new Order();
             order.pizzas = new List<Pizza>();
+            order.name = "Test";
             pizza = new Pizza();
-            pizza.extraToppings = new List<string>();
         }
 
         /// <summary>
@@ -31,8 +31,20 @@ namespace Appclient
         /// <param name="e"></param>
         private void BtnAddPizza_Clicked(object sender, EventArgs e)
         {
+            //validate
+            string? errorMsg = Validator.Any(pizzaname.Text, "pizza name", 1, 100);
+            if (errorMsg != null) { error.Text = errorMsg; return; }
+            try
+            {
+                pizza.count = int.Parse(pizzacount.Text);
+            }
+            catch
+            {
+                error.Text = "Failed to parse pizza count.";
+                return;
+            }
+
             pizza.name = pizzaname.Text;
-            pizza.count = int.Parse(pizzacount.Text);
             order.pizzas.Add(pizza);
             pizza = new Pizza();
             pizza.extraToppings = new List<string>();
@@ -47,6 +59,8 @@ namespace Appclient
         /// <param name="e"></param>
         private void BtnAddtopping_Clicked(object sender, EventArgs e)
         {
+            string? errorMessage = Validator.Any(Topping.Text, "topping", 1, 100);
+            if (errorMessage != null) { error.Text= errorMessage; return; }
             pizza.extraToppings.Add(Topping.Text);
             Topping.Text = "";
         }
@@ -84,6 +98,17 @@ namespace Appclient
         /// </summary>
         private void set_order()
         {
+            string? errorMessage = Validator.Any(name.Text, "name", 1, 100);
+            if (errorMessage != null) { error.Text = errorMessage; return; }
+            errorMessage = Validator.Any(postalCode.Text, "postalcode", 1, 100);
+            if (errorMessage != null) { error.Text = errorMessage; return; }
+            errorMessage = Validator.Any(city.Text, "city", 1, 100);
+            if (errorMessage != null) { error.Text = errorMessage; return; }
+            errorMessage = Validator.Any(street.Text, "street", 1, 100);
+            if (errorMessage != null) { error.Text = errorMessage; return; }
+            errorMessage = Validator.Any(housenumber.Text, "housenumber", 1, 100);
+            if (errorMessage != null) { error.Text = errorMessage; return; }
+
             order.name = name.Text;
             order.postalCode = postalCode.Text;
             order.city = city.Text;
