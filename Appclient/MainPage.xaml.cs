@@ -22,6 +22,7 @@ namespace Appclient
             order.pizzas = new List<Pizza>();
             order.name = "Test";
             pizza = new Pizza();
+            pizza.extraToppings = new List<string>();
         }
 
         /// <summary>
